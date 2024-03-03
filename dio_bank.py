@@ -73,7 +73,7 @@ while True:
         print("Realizando déposito.")
         saldo += valor_de_deposito
         extrato.insert(0, f"Déposito..........R$ {valor_de_deposito}")
-    # Extrato
+    # Extrato..
     elif operacao == '3':
         extrato.insert(len(extrato)+1, f"Saldo.............R$ {saldo}")
         print("""Extrato referente ás suas
