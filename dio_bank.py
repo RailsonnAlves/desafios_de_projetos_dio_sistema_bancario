@@ -44,11 +44,11 @@ while True:
             print(PARTE_SUPERIOR, '\n')
             valor_de_saque = float(input("Digite o valor que deseja sacar:\n"))
 
-            if valor_de_saque <= saldo and valor_de_saque <= valor_maximo:
+            if valor_de_saque <= saldo and valor_de_saque <= valor_maximo and valor_de_saque > 0:
                 print("Realizando saque.")
                 saldo -= valor_de_saque
                 numero_saque += 1
-                string_saque = f"Saque.............R$ {valor_de_saque}"
+                string_saque = f"Saque.............R$ {valor_de_saque:.2f}"
                 extrato.insert(0, string_saque)
 
             elif valor_de_saque > saldo:
@@ -65,17 +65,23 @@ while True:
                     print(mensagem_de_despedidas)
                     break
 
+            elif valor_de_saque < 0:
+                print("O valor informado é invalido")
+
         else:
             print("""Você só pode fazer 3 saques diário.""")
     # Déposito
     elif operacao == '2':
         valor_de_deposito = float(input("Insira o valor de déposito.\n"))
-        print("Realizando déposito.")
-        saldo += valor_de_deposito
-        extrato.insert(0, f"Déposito..........R$ {valor_de_deposito}")
+        if valor_de_deposito > 0:
+            print("Realizando déposito.")
+            saldo += valor_de_deposito
+            extrato.insert(0, f"Déposito..........R$ {valor_de_deposito:.2f}")
+        else:
+            print("Valor de déposito invalido")
     # Extrato..
     elif operacao == '3':
-        extrato.insert(len(extrato)+1, f"Saldo.............R$ {saldo}")
+        extrato.insert(len(extrato)+1, f"\n\nSaldo.............R$ {saldo:.2f}")
         print("""Extrato referente ás suas
 ultimas transações\n\n""")
         for i in extrato:
